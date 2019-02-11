@@ -1,0 +1,6 @@
+<input [(ngModel)]="titleCheck"> <button (click)="clickEvent()">Click me for an update!</button>
+<p>
+  <app-content-card *ngFor="let item of (content | contentType:'news'); last as isLast" [item]="item" [last]="isLast"></app-content-card>
+  <app-content-card *ngFor="let item of (content | contentType:'stories'); last as isLast" [item]="item" [last]="isLast"></app-content-card>
+</p>
+
