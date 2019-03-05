@@ -1,13 +1,13 @@
-<div class="card-wrapper {{item.type}}" [class.last]="last">
+<div appTextDecoration [decorStyle] = "'underline'" class="card-wrapper {{item.type}}" [class.last]="last">
   <div class="body">
     <strong>Title:</strong> {{item.title}}
   </div>
-  <div class="body" *ngIf="item.imgUrl; else defImg">
-      <img (click)="clickImage()" [src]="item.imgUrl">
+  <div class="image" *ngIf="item.imgUrl.length > 0">
+      <img (click)="clickImage()" [src]="item.imgUrl"/>
   </div>
-  <ng-template class="body" #defImg>
-    <img (click)="clickImage()" [src]="https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg">
-  </ng-template>
+  <div class="image" *ngIf="item.imgUrl.length < 1">
+    <img (click)="clickImage()" src="https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg"/>
+  </div>
   <div class="body">
     <strong>Body:</strong> {{item.body}}
   </div>
@@ -18,6 +18,6 @@
     <strong>Type:</strong> {{item.type}}
   </div>
   <div class="tags">
-    <strong>Tags:</strong><span *ngFor="let tag of item.tags">{{tag}} </span>
+    <strong>Tags:</strong><span appTextDecoration [decorStyle] = "'line-through'" *ngFor="let tag of item.tags">{{tag}} </span>
   </div>
 </div>

@@ -19,7 +19,7 @@ export class ContentListComponent implements OnInit {
       contentId: 1024,
       author: 'User',
       title: 'Title',
-      imgUrl: 'https://angular.io/assets/images/logos/angular/angular.png',
+      imgUrl: '',
       body: 'This is the body of the content',
       type: 'news',
       tags: ['this', 'is', 'a', 'tag', 'list']
@@ -45,9 +45,10 @@ export class ContentListComponent implements OnInit {
       contentId: 1027,
       author: 'User',
       title: 'Not title',
-      imgUrl: 'https://angular.io/assets/images/logos/angular/angular.png',
+      imgUrl: '',
       body: 'This is the best',
-      type: 'news'
+      type: 'news',
+      tags: ['fdsfdsdsf', 'tadgfdgdfgfdgs', 'tagdfgfds', 'tadfgdfs', 'tagdfgfdgs', 'dfgfd']
     };
     this.content[4] = {
       contentId: 1028,
