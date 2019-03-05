@@ -1,5 +1,13 @@
 <div class="card-wrapper {{item.type}}" [class.last]="last">
-  <img (click)="clickImage()" [src]="item.imgUrl">
+  <div class="body">
+    <strong>Title:</strong> {{item.title}}
+  </div>
+  <div class="body" *ngIf="item.imgUrl; else defImg">
+      <img (click)="clickImage()" [src]="item.imgUrl">
+  </div>
+  <ng-template class="body" #defImg>
+    <img (click)="clickImage()" [src]="https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg">
+  </ng-template>
   <div class="body">
     <strong>Body:</strong> {{item.body}}
   </div>

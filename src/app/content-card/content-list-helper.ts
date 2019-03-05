@@ -5,5 +5,5 @@ export interface Content {
     type?: string;
     body: string;
     tags?: string[];
-    title: string;
+    title?: string;
 }
