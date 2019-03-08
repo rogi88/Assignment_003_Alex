@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Content} from "./content-card/content-list-helper";
+import {Content} from './content-card/content-list-helper';
 
 @Component({
   selector: 'app-root',

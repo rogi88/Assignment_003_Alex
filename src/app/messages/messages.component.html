@@ -1,0 +1,12 @@
+
+<div *ngIf ="messageService.messages.length > 0" class="message-wrapper">
+  <div *ngIf="messageService.messages.length">
+
+    <h2>Hey!</h2>
+
+    <div *ngFor='let message of messageService.messages'> {{message}} </div>
+    <button class="clear"
+    (click)="messageService.clear()">Got It!</button>
+
+  </div>
+</div>
