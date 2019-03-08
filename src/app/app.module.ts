@@ -10,6 +10,9 @@ import { ContentTypePipe } from './content-type.pipe';
 import { TextDecorationDirective } from './text-decoration.directive';
 import { ContentService } from './services/content.service';
 import { MessagesComponent } from './messages/messages.component';
+import { HttpClientModule} from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import { InMemoryDataService} from './services/in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { MessagesComponent } from './messages/messages.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
   ],
   providers: [ContentService], // Doesn't seem to be necessary
   bootstrap: [AppComponent, ContentListComponent]

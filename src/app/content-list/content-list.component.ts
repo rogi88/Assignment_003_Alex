@@ -4,6 +4,7 @@ import { ContentService } from '../services/content.service';
 
 
 
+
 @Component({
   selector: 'app-content-list',
   templateUrl: './content-list.component.html',
@@ -13,6 +14,7 @@ export class ContentListComponent implements OnInit {
   content: Content[];
   date: Date;
   titleCheck: string;
+  contentItem: Content;
 
 
   constructor(private contentService: ContentService ) {
@@ -21,11 +23,15 @@ export class ContentListComponent implements OnInit {
 
   ngOnInit() {
     this.date = new Date();
-    this.contentService.getContentObs().subscribe(content =>
-      this.content = content);
+    this.contentService.getContent().subscribe(content => this.content = content);
   }
   clickEvent() {
     const numOfResults = this.content.filter(c => c.title === this.titleCheck).length;
     alert ('The number of items with that title is: ' + numOfResults);
 }
+
+  save(): void {
+    this.contentService.updateContent(this.contentItem)
+    .subscribe(() => console.log('Content updated'));
+    }
 }
