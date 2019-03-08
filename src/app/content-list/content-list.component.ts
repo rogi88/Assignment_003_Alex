@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Content } from '../content-card/content-list-helper';
 import { ContentService } from '../services/content.service';
 
-
-
-
 @Component({
   selector: 'app-content-list',
   templateUrl: './content-list.component.html',

@@ -13,6 +13,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule} from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { InMemoryDataService} from './services/in-memory-data.service';
+import { CreateContentComponent } from './create-content/create-content.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { InMemoryDataService} from './services/in-memory-data.service';
     ContentCardComponent,
     ContentTypePipe,
     TextDecorationDirective,
-    MessagesComponent
+    MessagesComponent,
+    CreateContentComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,7 @@
+
+<div class="create">
+  <app-create-content></app-create-content>
+</div>
 <input [(ngModel)]="titleCheck"> <button (click)="clickEvent()">Click me for an update!</button>
 <p>
   <app-content-card *ngFor="let item of (content | contentType:'news'); last as isLast" [item]="item" [last]="isLast"></app-content-card>

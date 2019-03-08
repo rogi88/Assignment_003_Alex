@@ -24,14 +24,17 @@ export class ContentService {
   }
 
   updateContent(content: Content): Observable<any> {
-    return this.http.put('api/content', content,
-    this.httpOptions);
+    return this.http.put('api/content', content, this.httpOptions);
   }
 
   addContent(content: Content): Observable<Content> {
-    return this.http.post<Content>('api/content', content,
-    this.httpOptions);
+    return this.http.post<Content>('api/content', content,this.httpOptions);
   }
+
+    genId(content: Content[]): number {
+    return content.length > 0 ? Math.max(...content.map(content => content.contentId)) + 1 : 2000;
+  }
+
   // getContentObs(): Observable<Content[]> {
   //   this.messageService.add('ContentService: fetched content');
   //   return of(content);
