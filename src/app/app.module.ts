@@ -8,6 +8,7 @@ import { ContentCardComponent } from './content-card/content-card.component';
 import { FormsModule } from '@angular/forms';
 import { ContentTypePipe } from './content-type.pipe';
 import { TextDecorationDirective } from './text-decoration.directive';
+import { ContentService } from './services/content.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,9 @@ import { TextDecorationDirective } from './text-decoration.directive';
   ],
   imports: [
     BrowserModule,
-      FormsModule
+    FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ContentService], //Doesn't seem to be necessary
+  bootstrap: [AppComponent, ContentListComponent]
 })
 export class AppModule { }

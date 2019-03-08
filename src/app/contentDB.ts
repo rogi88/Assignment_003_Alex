@@ -1,4 +1,3 @@
-
 export let content = [];
 
 content[0] = {
