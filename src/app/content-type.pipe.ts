@@ -7,7 +7,7 @@ import { Content } from './content-card/content-list-helper';
 export class ContentTypePipe implements PipeTransform {
 
   transform(contentList: Content[], type: string): any {
-    return contentList.filter(c => c.type != null ? c.type === type : null);
+    return contentList != null ? contentList.filter(c => c.type != null ? c.type === type : null) : [];
   }
 
 }

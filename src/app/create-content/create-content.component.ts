@@ -1,7 +1,18 @@
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  Output,
+  ViewChild
+} from '@angular/core';
+import {
+  Content
+} from '../content-card/content-list-helper';
+import {
+  ContentService
+} from '../services/content.service';
 
-import { Component, OnInit } from '@angular/core';
-import { Content} from '../content-card/content-list-helper';
-import { ContentService } from '../services/content.service';
 
 @Component({
   selector: 'app-create-content',
@@ -10,23 +21,57 @@ import { ContentService } from '../services/content.service';
 })
 export class CreateContentComponent implements OnInit {
 
-  newItem: Content;
+  @Input() contentList: Content[];
+
+  @Output() addItemEvent = new EventEmitter();
+
+  tempContentItem: Content;
+
+  private _newItemFlag = false;
+  private _updateItemFlag = false;
+
+  @ViewChild('tagStringInput') tagStringInput;
 
 
-  constructor(private contentService: ContentService ) { }
+  constructor(private contentService: ContentService) {
+
+  }
+
+  @Input()
+  set newItemFlag(newItemFlag: boolean) {
+    this._newItemFlag = newItemFlag;
+    if (this._newItemFlag === true) {
+      this.createItem();
+    }
+  }
+
+  addItem() {
+      this.addItemEvent.emit({
+      eventName: 'create-content',
+      data: this.tempContentItem});
+  }
 
   ngOnInit() {
-  }
-
-  createNewItem(){
 
   }
 
-  addNewItem(): void {
+  private createItem(): Content {
+    this.tempContentItem = {
+      contentId: this.contentService.genId(this.contentList),
+      title: '',
+      author: '',
+      body: '',
+      imgUrl: '',
+      tags: ['new', 'item'],
+      type: 'stories'
+    };
+    return this.tempContentItem;
+  }
 
 
-
-    this.contentService.updateContent(this.contentItem)
-    .subscribe(() => console.log('Content updated'));
-    }
+  updateTagProp(inputString: string) {
+    const tempArray = inputString.split(',').filter( (element) => element !== '').map( (element) => element.trim());
+    this.tempContentItem.tags = tempArray.filter( (element) => element !== '');
+    console.log( this.tempContentItem.tags);
+  }
 }

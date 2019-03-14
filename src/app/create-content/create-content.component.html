@@ -1,11 +1,16 @@
-<form action="">
-<label for="author">Author: </label><input type="text" name="author" id="author">
-<label for="title">Title: </label><input type="text" name="title" id="title">
-<label for="imgurl">Image URL: </label><input type="text" name="imgurl" id="imgurl">
-<label for="body">Author</label><textarea rows="30" cols="30" name="body" id="body"></textarea>
-<label for="type"></label><select name="type" id="type">
+<form>
+<label #itemContentId >{{tempContentItem.contentId}}</label> <br>
+<label for="author">Author: </label><input type="text" name="author" id="author" #itemAuthorInput [(ngModel)]= "tempContentItem.author"> <br>
+<label for="title">Title: </label><input type="text" name="title" id="title" #itemTitleInput [(ngModel)]= "tempContentItem.title"><br>
+<label for="imgurl">Image URL: </label><input type="text" name="imgurl" id="imgurl" #itemImageUrlInput [(ngModel)] = "tempContentItem.imgUrl"><br>
+<label for="body">Body: </label><textarea rows="10" cols="30" name="body" id="body" #itemAuthorInput [(ngModel)] = "tempContentItem.body"></textarea><br>
+<label for="type"></label><select name="type" id="type" #itemTypeInput [(ngModel)] = "tempContentItem.type"><br>
   <option value="news">News</option>
-  <option value="stories">stories</option>
+  <option value="stories">Stories</option>
 </select>
-<button (click)="addContent()">Add content</button>
+<label for="tags">Tags (sepatate with commas):
+  <input type="text" name="tags" id="tags" #tagStringInput [ngModel]="tempContentItem.tags | arrayToString" (input)="updateTagProp(tagStringInput.value)">
+</label><br>
+
+<button (click) = "addItem()">Add content</button><br>
 </form>

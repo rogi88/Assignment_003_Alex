@@ -16,7 +16,14 @@ export class InMemoryDataService implements InMemoryDbService {
     'application/json' })
     };
 
-  createDb(_reqInfo?: import('angular-in-memory-web-api').RequestInfo): {} | import('rxjs').Observable<{}> | Promise<{}> {
+  genId(content: Content[]): number {
+    const id: number = content.length > 0 ? Math.max(...content.map(content => content.contentId)) + 1 : 2000;
+    return id;
+    }
+
+
+
+  createDb() {
 
   const content: Content[] =
     [

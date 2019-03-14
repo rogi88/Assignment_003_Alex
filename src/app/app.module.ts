@@ -8,12 +8,12 @@ import { ContentCardComponent } from './content-card/content-card.component';
 import { FormsModule } from '@angular/forms';
 import { ContentTypePipe } from './content-type.pipe';
 import { TextDecorationDirective } from './text-decoration.directive';
-import { ContentService } from './services/content.service';
 import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule} from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { InMemoryDataService} from './services/in-memory-data.service';
 import { CreateContentComponent } from './create-content/create-content.component';
+import { ArrayToStringPipe } from './array-to-string.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { CreateContentComponent } from './create-content/create-content.componen
     ContentTypePipe,
     TextDecorationDirective,
     MessagesComponent,
-    CreateContentComponent
+    CreateContentComponent,
+    ArrayToStringPipe
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,7 @@ import { CreateContentComponent } from './create-content/create-content.componen
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
   ],
-  providers: [ContentService], // Doesn't seem to be necessary
-  bootstrap: [AppComponent, ContentListComponent]
+  providers: [], // Doesn't seem to be necessary
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
