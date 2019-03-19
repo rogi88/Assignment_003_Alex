@@ -1,4 +1,4 @@
-<form>
+<form #createContentForm>
 <label #itemContentId >{{tempContentItem.contentId}}</label> <br>
 <label for="author">Author: </label><input type="text" name="author" id="author" #itemAuthorInput [(ngModel)]= "tempContentItem.author"> <br>
 <label for="title">Title: </label><input type="text" name="title" id="title" #itemTitleInput [(ngModel)]= "tempContentItem.title"><br>
@@ -13,4 +13,6 @@
 </label><br>
 
 <button (click) = "addItem()">Add content</button><br>
+<button (click) = "updateCotent()">Update Content</button>
+<button(click) = "deleteCotent()">Delete Content</button>
 </form>

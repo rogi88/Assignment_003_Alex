@@ -1,7 +1,7 @@
 <input [(ngModel)]="titleCheck"> <button (click)="clickEvent()">Click me for an update!</button>
 <p >
   <app-create-content #createContent [newItemFlag] = "contentProcessed" [contentList] = "content.length-1 > 0 ? content : []" (addItemEvent) = "addNewItem($event)" ></app-create-content>
-  <app-content-card *ngFor="let item of (content | contentType:'news'); last as isLast" [item]="item" [last]="isLast"></app-content-card>
+  <app-content-card *ngFor="let item of (content | contentType:'news'); last as isLast" [item]="item" [last]="isLast" [edit]></app-content-card>
   <app-content-card *ngFor="let item of (content | contentType:'stories'); last as isLast" [item]="item" [last]="isLast"></app-content-card>
 </p>
 

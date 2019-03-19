@@ -2,7 +2,6 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Content } from '../content-card/content-list-helper';
 import { ContentService } from '../services/content.service';
 import { MessageService } from '../services/message.service';
-import { CreateContentComponent } from '../create-content/create-content.component';
 
 
 @Component({

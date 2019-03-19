@@ -20,9 +20,7 @@
   <div class="tags">
     <strong>Tags:</strong><span appTextDecoration [decorStyle] = "'line-through'" *ngFor="let tag of item.tags">{{tag}} </span>
   </div>
-  <div *ngIf="edit">
-    <app-create-content>
-
-    </app-create-content>
+  <div *ngIf={{editMode}}>
+    <input value="unchecked" type="radio" name="edit" id="edit" [(ngModel)] = "radioButton" ()>
   </div>
 </div>
