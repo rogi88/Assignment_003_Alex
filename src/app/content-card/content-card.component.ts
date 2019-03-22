@@ -17,12 +17,10 @@ export class ContentCardComponent implements OnInit {
 
   radioButton = 'unchecked';
 
-  @Output() radiosAndFields: EventEmitter = new EventEmitter();
-
   @Input() item: Content;
   @Input () last: boolean;
 
-  @Input() edit: false;
+
 
   constructor() { }
 
@@ -32,7 +30,5 @@ export class ContentCardComponent implements OnInit {
     console.log(this.item.contentId);
   }
 
-  chooseForEdit() {
-    this.radiosAndFields.emit(this.item.contentId.toString());
-  }
+
 }

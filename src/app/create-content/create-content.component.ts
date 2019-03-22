@@ -28,9 +28,6 @@ export class CreateContentComponent implements OnInit {
   tempContentItem: Content;
 
   private _newItemFlag = false;
-  private _updateItemFlag = false;
-
-  @ViewChild('tagStringInput') tagStringInput;
 
 
   constructor(private contentService: ContentService) {
@@ -62,7 +59,7 @@ export class CreateContentComponent implements OnInit {
       author: '',
       body: '',
       imgUrl: '',
-      tags: ['new', 'item'],
+      tags: [],
       type: 'stories'
     };
     return this.tempContentItem;

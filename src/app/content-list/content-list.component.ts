@@ -15,6 +15,7 @@ export class ContentListComponent implements OnInit {
   date: Date;
   titleCheck: string;
 
+
   contentProcessed = false;
 
   constructor(private contentService: ContentService, private messageService: MessageService ) {
