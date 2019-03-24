@@ -20,5 +20,8 @@
   <div class="tags">
     <strong>Tags:</strong><span appTextDecoration [decorStyle] = "'line-through'" *ngFor="let tag of item.tags">{{tag}} </span>
   </div>
+  <div *ngIf = "editMode">
+    <label>Edit:&nbsp;</label><input (click) = editMe()  type="radio">
+  </div>
 
 </div>

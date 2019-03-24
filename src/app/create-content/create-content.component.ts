@@ -4,7 +4,6 @@ import {
   Input,
   EventEmitter,
   Output,
-  ViewChild
 } from '@angular/core';
 import {
   Content
@@ -13,7 +12,6 @@ import {
   ContentService
 } from '../services/content.service';
 
-
 @Component({
   selector: 'app-create-content',
   templateUrl: './create-content.component.html',
@@ -21,25 +19,42 @@ import {
 })
 export class CreateContentComponent implements OnInit {
 
-  @Input() contentList: Content[];
+  @Input() contentList: Content[]; // I have sent the content list here
 
   @Output() addItemEvent = new EventEmitter();
 
+  @Output() editItemsEvent = new EventEmitter();
+
+
   tempContentItem: Content;
 
-  private _newItemFlag = false;
+  // Toggles allowing to create a new contact, condition: if content list didn't process a contact yet
+  private _contentProcessed = false;
+
+  private _editMode = false;
+
+  private _itemToEdit: Content = undefined;
 
 
   constructor(private contentService: ContentService) {
 
   }
 
+
+
   @Input()
-  set newItemFlag(newItemFlag: boolean) {
-    this._newItemFlag = newItemFlag;
-    if (this._newItemFlag === true) {
+  set contentProcessed(newItemFlag: boolean) {
+    this._contentProcessed = newItemFlag;
+    if (this._contentProcessed === true) {
       this.createItem();
     }
+    console.log(`Creation of new items ${this._contentProcessed ? 'enabled' : 'disabled'}`);
+  }
+
+  @Input()
+  set itemToEdit(item: Content) {
+    this._itemToEdit = item;
+    this.createItem(item);
   }
 
   addItem() {
@@ -48,20 +63,39 @@ export class CreateContentComponent implements OnInit {
       data: this.tempContentItem});
   }
 
+  editMode() {
+    this._editMode = true;
+    this._contentProcessed = false;
+    this.editItemsEvent.emit({value: true});
+  }
+
   ngOnInit() {
 
   }
 
-  private createItem(): Content {
-    this.tempContentItem = {
-      contentId: this.contentService.genId(this.contentList),
-      title: '',
-      author: '',
-      body: '',
-      imgUrl: '',
-      tags: [],
-      type: 'stories'
-    };
+  private createItem(itemToEdit?: Content): Content {
+      if (itemToEdit === undefined) {
+      this.tempContentItem = {
+        contentId: this.contentService.genId(this.contentList),
+        title: '',
+        author: '',
+        body: '',
+        imgUrl: '',
+        tags: [],
+        type: 'stories'
+      };
+
+    } else {
+      this.tempContentItem = {
+        contentId: itemToEdit.contentId,
+        title: itemToEdit.title,
+        author: itemToEdit.author,
+        body: itemToEdit.body,
+        imgUrl: itemToEdit.imgUrl,
+        tags: itemToEdit.tags,
+        type: itemToEdit.type
+      };
+    }
     return this.tempContentItem;
   }
 

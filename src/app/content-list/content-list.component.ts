@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Content } from '../content-card/content-list-helper';
 import { ContentService } from '../services/content.service';
 import { MessageService } from '../services/message.service';
-
 
 @Component({
   selector: 'app-content-list',
@@ -18,8 +17,32 @@ export class ContentListComponent implements OnInit {
 
   contentProcessed = false;
 
+  _editMode = false;
+
+  _editContentById: number;
+
+  itemToEdit: Content;
+
   constructor(private contentService: ContentService, private messageService: MessageService ) {
 
+  }
+
+  editContentById(contentId: number) {
+    this._editContentById = contentId;
+    console.log(`Item to be edited is ${this._editContentById}`);
+    this.itemToEdit = this.content.reduce( (itemToEdit, item) => {
+      if (item.contentId === contentId) {
+      itemToEdit = item; }
+      return itemToEdit;
+    });
+    this.contentProcessed = false;
+    console.log(`The item to edit is:`);
+    console.log(this.itemToEdit);
+  }
+
+  editMode(setEditMode) {
+    this._editMode = setEditMode.value;
+    console.log('edit mode is:' + this._editMode);
   }
 
   ngOnInit() {

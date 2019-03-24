@@ -1,8 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import {Content} from './content-list-helper';
-import { EventEmitter } from 'protractor';
-import { content } from '../contentDB';
-
 
 
 @Component({
@@ -18,11 +15,20 @@ export class ContentCardComponent implements OnInit {
   radioButton = 'unchecked';
 
   @Input() item: Content;
-  @Input () last: boolean;
+  @Input() last: boolean;
 
+  @Input() editMode = false;
 
+  @Output() editMeEvent = new EventEmitter();
 
   constructor() { }
+
+  editMe() {
+    this.radioButton = 'checked';
+    this.editMeEvent.emit({value: this.item.contentId});
+    console.log(`Emmiting content id to edit : ${this.item.contentId}`);
+  }
+
 
   ngOnInit() {
   }

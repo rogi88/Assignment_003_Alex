@@ -19,29 +19,27 @@ export class ContentService {
     'application/json' })
     };
 
-    genIdPromise(): Promise<number> {
-      // let id: number = content.length > 0 ? Math.max(...content.map(content => content.contentId)) + 1 : 2000;
-      return new Promise( resolve => {
-        return this.getContent().subscribe(result => {
-          resolve(result[result.length - 1].contentId);
-        });
+  genIdPromise(): Promise<number> {
+    // let id: number = content.length > 0 ? Math.max(...content.map(content => content.contentId)) + 1 : 2000;
+    return new Promise( resolve => {
+      return this.getContent().subscribe(result => {
+        resolve(result[result.length - 1].contentId);
       });
-    }
+    });
+  }
 
-    _genId(): void {
-    let id: number;
-    this.genIdPromise().then(res => {
-      id = Number(res);
-      return id;
-      });
-    }
+  _genId(): void {
+  let id: number;
+  this.genIdPromise().then(res => {
+    id = Number(res);
+    return id;
+    });
+  }
 
-    genId(content: Content[]): number {
-      const id: number = content.length > 0 ? Math.max(...content.map(content => content.contentId)) + 1 : 2000;
-      return id;
-    }
-
-
+  genId(content: Content[]): number {
+    const id: number = content.length > 0 ? Math.max(...content.map(content => content.contentId)) + 1 : 2000;
+    return id;
+  }
 
   getContent(): Observable < Content[] > {
 

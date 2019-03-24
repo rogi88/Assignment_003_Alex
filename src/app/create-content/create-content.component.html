@@ -12,6 +12,6 @@
   <input type="text" name="tags" id="tags" #tagStringInput [ngModel]="tempContentItem.tags | arrayToString" (input)="updateTagProp(tagStringInput.value)">
 </label><br>
 
-<button (click) = "addItem()">Add content</button><br>
-
+<button (click) = "addItem()" [disabled]="!_newItemFlag">Add content</button><br>
+<button (click) = "editMode()">Edit content</button>
 </form>
